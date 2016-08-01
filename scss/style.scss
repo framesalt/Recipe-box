@@ -1,0 +1,205 @@
+$mainColor: #337ab7;
+$mainFont: Monospace;
+$bodyHeight: 1000px;
+$secondaryColor: #004d00;
+@mixin border-styling($weight:2px, $border-style: solid, $color: $mainColor, $radius: 15px) {
+  border: $weight $border-style $color;
+  border-radius: $radius;
+}
+
+@mixin input-panel-components() {
+  padding: 5px;
+  display: block;
+  @include border-styling();
+}
+
+@mixin cutOutlines() {
+  outline: none;
+  text-decoration: none;
+}
+
+@mixin makeTransparentButton() {
+  background: transparent;
+  box-shadow: none;
+}
+
+* {
+  @include cutOutlines();
+}
+
+body {
+  height: $bodyHeight;
+  width: 100%;
+  color: $mainColor;
+  font-family: $mainFont;
+  overflow-x: hidden;
+}
+
+.custom-border {
+  width: calc(70% - 30px);
+  margin: 2px auto;
+  @include border-styling();
+  background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/swirl_pattern.png");
+}
+
+.input-panel {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.blured-bg {
+  width: 100%;
+  height: 250px;
+  background-image: url("http://cdn1-www.wholesomebabyfood.momtastic.com/assets/uploads/2015/04/tomato.jpg");
+  background-size: cover;
+  display: block;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  z-index: 1;
+  @include border-styling(12px);
+}
+
+.input-form {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  left: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  right: 0;
+  input {
+    @include input-panel-components();
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 50%;
+    margin: 10px auto;
+    opacity: 0.6;
+    font-weight: bold;
+    color: $mainColor !important;
+  }
+  textarea {
+    @include input-panel-components();
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    width: 60% !important;
+    max-width: 60% !important;
+    margin: 10px auto !important;
+    opacity: 0.6;
+    font-weight: bold;
+    outline: none;
+    &:focus {
+      border-color: #66afe9;
+      transition: border-color 0.3s;
+    }
+  }
+  button {
+    display: block;
+    width: auto;
+    margin: 4px auto;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .input-panel {
+    width: 80%;
+  }
+  .input-form {
+    input {
+      width: 70% !important;
+    }
+    textarea {
+      width: 90% !important;
+      max-width: 90% !important;
+    }
+  }
+}
+
+.nodes {
+  position: absolute;
+  height: 700px;
+  width: 300px;
+  width: calc(100% - 30px);
+  padding-left: calc(100% - 30px - 50% - 85px);
+  opacity: 0.6;
+  > div {
+    width: 150px;
+    height: 700px;
+  }
+}
+
+.node {
+  margin-top: 5px;
+  display: block;
+  width: 200px;
+  height: 200px;
+  border: 2px solid $mainColor;
+  border-top-color: $secondaryColor;
+  border-bottom-color: $secondaryColor;
+  border-radius: 15px;
+  border-style: dashed;
+  background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/swirl_pattern.png");
+}
+
+.eraser {
+  border-top-left-radius: 12px;
+  position: relative;
+  margin: 6px;
+  margin-left: 9px;
+  @include makeTransparentButton();
+}
+
+.editer {
+  margin: 6px;
+  margin-left: 11px;
+  border-top-right-radius: 12px;
+  position: relative;
+  @include makeTransparentButton();
+}
+
+.more {
+  margin-left: 6px;
+  visibility: hidden;
+  background-color: black;
+}
+
+.scroll-buttons {
+  margin: 0;
+  width: 170px;
+  margin-left: 17px;
+  padding-left: 10px;
+  button {
+    @include makeTransparentButton();
+    &:first-child {
+      border-bottom-left-radius: 15px !important;
+    }
+    &:nth-child(2) {
+      border-radius: 1px;
+    }
+    &:last-child {
+      border-bottom-right-radius: 15px !important;
+    }
+  }
+}
+
+.recipe {
+  .body {
+    font-weight: bold;
+    border: 2px solid #004d00;
+    border-radius: 15px;
+    border-style: dashed;
+    border-top: 0px;
+    border-bottom: 0px;
+    margin: 0 8px;
+    padding: 0 9px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 120px;
+    overflow: hidden;
+  }
+  .title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 19px;
+  }
+}
